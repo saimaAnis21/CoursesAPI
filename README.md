@@ -1,7 +1,7 @@
 # Course - API
 # [Live Link]()
 
-A  ![](https://img.shields.io/badge/Microverse-blueviolet)  capstone project for React-Redux Module
+A  ![](https://img.shields.io/badge/Microverse-blueviolet)  final capstone project 
 
 A course API for enrolling students in courses
 
