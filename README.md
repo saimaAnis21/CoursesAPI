@@ -10,7 +10,6 @@ A course API for enrolling students in courses
 - Rails
 - Ruby
 - Rspec
-- rubocop
 - Heroku
 
 ## Getting Started
