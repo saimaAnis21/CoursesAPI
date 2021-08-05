@@ -5,3 +5,6 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+user = User.create(name:'yusuf',email:'yusuf@gmail.com',password:'123456')
+cat = CategoryName.create(name:'Development')
+Course.create(title:'Ruby on Rails', duration:'1.5', category_name_id:cat.id, created_by:user.id)

@@ -58,10 +58,10 @@ RSpec.describe 'Courses', type: :request do
     let(:category_id) { category_names.first.id }
     # send json payload
     let(:valid_attributes) { { title: 'Learn Rails', duration: 1.0, category_name_id: category_id }.to_json }
-     
+
     context 'when the request is valid' do
       before { post '/courses', params: valid_attributes, headers: headers }
-      
+
       it 'creates a course' do
         expect(json['title']).to eq('Learn Rails')
       end
@@ -72,7 +72,6 @@ RSpec.describe 'Courses', type: :request do
     end
 
     context 'when the request is invalid' do
-
       let(:invalid_attributes) { { title: nil }.to_json }
 
       before { post '/courses', params: invalid_attributes, headers: headers }
@@ -91,10 +90,10 @@ RSpec.describe 'Courses', type: :request do
   # Test suite for PUT /courses/:id
   describe 'PUT /courses/:id' do
     let(:valid_attributes) { { title: 'Learn Ruby' }.to_json }
-    
+
     context 'when the record exists' do
       before { put "/courses/#{course_id}", params: valid_attributes, headers: headers }
-      
+
       it 'updates the record' do
         expect(response.body).to be_empty
       end

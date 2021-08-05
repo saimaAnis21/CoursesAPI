@@ -17,6 +17,8 @@ gem 'puma', '~> 5.0'
 gem 'bcrypt', '~> 3.1.7'
 # gem to manage JSON web tokens(jwt)
 gem 'jwt'
+# provides support for Cross-Origin Resource Sharing (CORS)
+gem 'rack-cors'
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
