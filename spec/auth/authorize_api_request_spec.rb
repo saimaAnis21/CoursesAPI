@@ -1,4 +1,5 @@
-# spec/auth/authorize_api_request_spec.rb
+# rubocop:disable Metrics/BlockLength
+
 require 'rails_helper'
 
 RSpec.describe AuthorizeApiRequest do
@@ -69,3 +70,4 @@ RSpec.describe AuthorizeApiRequest do
     end
   end
 end
+# rubocop:enable Metrics/BlockLength

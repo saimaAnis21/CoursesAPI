@@ -1,3 +1,5 @@
+# rubocop:disable Layout/LineLength
+
 require 'rails_helper'
 
 RSpec.describe 'Courses', type: :request do
@@ -113,3 +115,4 @@ RSpec.describe 'Courses', type: :request do
     end
   end
 end
+# rubocop:enable Layout/LineLength
