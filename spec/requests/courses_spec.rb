@@ -6,7 +6,7 @@ RSpec.describe 'Courses', type: :request do
   # creating categor_names from factorybot
   let!(:category_names) { create_list(:category_name, 5) }
   let(:category_id) { category_names.first.id }
-  let!(:courses) { create_list(:course, 10, created_by: user.id, category_name_id: category_id) }
+  let!(:courses) { create_list(:course, 10, created_by: user.id, category_name_id: category_id, duration: 5.5) }
   let(:course_id) { courses.first.id }
   let(:headers) { valid_headers }
 
