@@ -3,7 +3,10 @@ class CoursesController < ApplicationController
 
   # GET /courses
   def index
-    @courses = current_user.courses
+    @courses = CategoryName.joins(:courses).select('courses.title', 'courses.created_by', 'category_names.name').where(
+      'courses.created_by = ?', current_user
+    )
+    #  current_user.courses;
     json_response(@courses)
   end
 
