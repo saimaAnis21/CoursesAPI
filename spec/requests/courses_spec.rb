@@ -1,11 +1,12 @@
-# rubocop:disable Layout/LineLength
-
 require 'rails_helper'
 
 RSpec.describe 'Courses', type: :request do
   # initialize test data
   let(:user) { create(:user) }
-  let!(:courses) { create_list(:course, 10, created_by: user.id) }
+  # creating categor_names from factorybot
+  let!(:category_names) { create_list(:category_name, 5) }
+  let(:category_id) { category_names.first.id }
+  let!(:courses) { create_list(:course, 10, created_by: user.id, category_name_id: category_id) }
   let(:course_id) { courses.first.id }
   let(:headers) { valid_headers }
 
@@ -55,9 +56,6 @@ RSpec.describe 'Courses', type: :request do
 
   # Test suite for POST /courses
   describe 'POST /courses' do
-    # creating categor_names from factorybot
-    let!(:category_names) { create_list(:category_name, 5) }
-    let(:category_id) { category_names.first.id }
     # send json payload
     let(:valid_attributes) { { title: 'Learn Rails', duration: 1.0, category_name_id: category_id }.to_json }
 
@@ -65,7 +63,7 @@ RSpec.describe 'Courses', type: :request do
       before { post '/courses', params: valid_attributes, headers: headers }
 
       it 'creates a course' do
-        expect(json['title']).to eq('Learn Rails')
+        expect(json[0]['title']).to match('Learn Rails')
       end
 
       it 'returns status code 201' do
@@ -84,7 +82,7 @@ RSpec.describe 'Courses', type: :request do
 
       it 'returns a validation failure message' do
         expect(json['message'])
-          .to match(/Validation failed: Category name must exist, Title can't be blank, Duration can't be blank, Category name can't be blank/)
+          .to match(/Validation failed: Title can't be blank, Duration can't be blank, Category name can't be blank/)
       end
     end
   end
@@ -115,4 +113,3 @@ RSpec.describe 'Courses', type: :request do
     end
   end
 end
-# rubocop:enable Layout/LineLength

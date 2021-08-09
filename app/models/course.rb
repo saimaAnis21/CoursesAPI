@@ -1,3 +1,4 @@
 class Course < ApplicationRecord
-  validates_presence_of :title, :duration
+  belongs_to :user, foreign_key: 'created_by'
+  validates_presence_of :title, :duration, :category_name_id
 end
