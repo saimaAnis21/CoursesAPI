@@ -1,12 +1,12 @@
 class CoursesController < ApplicationController
   before_action :set_course, only: %i[show update destroy]
+  before_action :join_course_catname, only: %i[index create]
 
   # GET /courses
   def index
-    @courses = CategoryName.joins(:courses).select('courses.title', 'courses.created_by', 'category_names.name').where(
+    @courses = @joinedtable.where(
       'courses.created_by = ?', current_user
     )
-    #  current_user.courses;
     json_response(@courses)
   end
 
@@ -17,7 +17,10 @@ class CoursesController < ApplicationController
 
   # POST /courses
   def create
-    @course = current_user.courses.create!(course_params)
+    @cour = current_user.courses.create!(course_params)
+    @course = @joinedtable.where(
+      'courses.id = ?', @cour.id
+    )
     json_response(@course, :created)
   end
 
@@ -44,5 +47,10 @@ class CoursesController < ApplicationController
     # @course = Course.find(params[:id])
     usercourses = current_user.courses
     @course = usercourses.find(params[:id])
+  end
+
+  def join_course_catname
+    @joinedtable = CategoryName.joins(:courses).select('courses.id', 'courses.title', 'courses.created_by',
+                                                       'courses.duration', 'category_names.name AS category')
   end
 end
