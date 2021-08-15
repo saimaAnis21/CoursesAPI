@@ -5,7 +5,7 @@ class User < ApplicationRecord
   has_secure_password
 
   has_many :courses, dependent: :destroy, foreign_key: :created_by
-  
+
   validates_presence_of :email, :password_digest
   validates :name, presence: true, length: { minimum: 5 }
   validates_uniqueness_of :email, on: :create, message: 'This email already exists!'

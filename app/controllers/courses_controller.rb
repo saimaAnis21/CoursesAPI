@@ -1,6 +1,6 @@
 class CoursesController < ApplicationController
   before_action :set_course, only: %i[show update destroy]
-  
+
   # GET /courses
   def index
     @courses = CategoryName.with_courses.where(
@@ -47,5 +47,4 @@ class CoursesController < ApplicationController
     usercourses = current_user.courses
     @course = usercourses.find(params[:id])
   end
-
 end
