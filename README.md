@@ -1,16 +1,15 @@
-# Course - API
-# [Live Link]()
+# Crash Coursera - API
 
 A  ![](https://img.shields.io/badge/Microverse-blueviolet)  final capstone project 
 
-A course API for enrolling students in courses
+A course API for crash courses, where instructors can create courses
 
 ## Built With
 
-- Rails
-- Ruby
-- Rspec
-- rubocop
+- Rails 6.1.4
+- Ruby 3.0.0
+- Rspec 
+- PostgreSQL
 - Heroku
 
 ## Getting Started
@@ -21,10 +20,23 @@ To get a local copy up and running follow these simple example steps.
 - cd into the root directory
 - Run git pull origin main
 - run ```bundle install``` to install the project dependencies
+- run ```rails db:create``` to create the database
+- run ```rails db:migrate``` to setup the database
+- run ```rails db:seed``` to populate database with data
 - run ```rails s``` to start the project
 
 ## Testing
 - run ```bundle exec rspec``` to run the tests
+
+## Current API Endpoints
+
+| Endpoint                | Functionality                |
+|-------------------------|------------------------------|
+| POST /signup            | Signup                       |
+| POST /auth/login        | Login                        |
+| GET /courses            | list all Courses             |
+| POST /courses           | Create a Course              |
+| DELETE /courses/:id     | Delete course                |
 
 
 ## Author
