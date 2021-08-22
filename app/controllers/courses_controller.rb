@@ -3,9 +3,7 @@ class CoursesController < ApplicationController
 
   # GET /courses
   def index
-    @courses = CategoryName.with_courses.where(
-      'courses.created_by = ?', current_user.id
-    )
+    @courses = CategoryName.with_courses_ofuserid(current_user.id)
     json_response(@courses)
   end
 
@@ -17,9 +15,7 @@ class CoursesController < ApplicationController
   # POST /courses
   def create
     @cour = current_user.courses.create!(course_params)
-    @course = CategoryName.with_courses.where(
-      'courses.id = ?', @cour.id
-    )
+    @course = CategoryName.with_courses_ofcourseid(@cour.id)
     json_response(@course, :created)
   end
 
